@@ -2,5 +2,13 @@
 - hosts: local
 
   roles:
-    - vim
+    - role: brew
+      packages:
+      - ag
+      - git
+    - role: pip
+      packages:
+      - name: construi
+        version: 41
+    - role: vim
 
