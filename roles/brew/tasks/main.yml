@@ -1,54 +1,12 @@
-- name: Setup /usr/local
-  become: true
-  file:
-    path: /usr/local
-    state: directory
-    owner: "{{ ansible_env.USER }}"
-    group: admin
-    mode: 0755
 
-- name: Setup brew src dir
-  file:
-    path: "{{ brew_src_dir }}"
-    state: directory
-    owner: "{{ ansible_env.USER }}"
-    group: admin
-    mode: 0755
+- name: Install brew
+  include: install_brew.yml
 
-- name: Download brew
-  get_url:
-    url: https://github.com/Homebrew/brew/archive/{{ brew_version }}.tar.gz
-    dest: "{{ brew_src_archive }}"
-  register: brew_download_result
-
-- name: Extract brew
-  unarchive:
-    src: "{{ brew_src_archive }}"
-    dest: /usr/local/src
-    remote_src: yes
-  when: brew_download_result.changed
-
-- name: Setup links
-  file:
-    src: "{{ item.src }}"
-    dest: "{{ item.dest }}"
-    state: link
-  with_items:
-    - src: "{{ brew_src_dir }}"
-      dest: "{{ brew_install_dir }}"
-    - src: "{{ brew_install_dir }}/bin/brew"
-      dest: "{{ brew_bin }}"
-
-- name: Update brew
-  command: "{{ brew_bin }} update" 
-  register: brew_update_result
-  changed_when: "brew_update_result.stdout != 'Already up-to-date.'"
-
-- name: Install brew required packages
-  include: install.yml
+- name: Install packages
+  include: install_package.yml
   vars:
     package: "{{ item }}"
-  with_items: "{{ brew_required_packages | union(packages) }}"
+  with_items: "{{ packages }}"
 
 - name: Linkapps
   command: "{{ brew_bin }} linkapps {{ item }}"
@@ -57,6 +15,3 @@
   failed_when: 'brew_linkapps_result.stderr != ""'
   with_items: "{{ packages }}"
 
-- name: Verify brew installation
-  command: "{{ brew_bin }} doctor"
-  changed_when: false
