@@ -1,0 +1,7 @@
+dependencies:
+  - role: brew
+    packages:
+      - macvim
+      - vim
+  - role: dock
+    app: MacVim
