@@ -3,7 +3,7 @@
   file:
     path: /usr/local
     state: directory
-    owner: "{{ lookup('env', 'USER') }}"
+    owner: "{{ ansible_env.USER }}"
     group: admin
     mode: 0755
 
@@ -11,7 +11,7 @@
   file:
     path: "{{ brew_src_dir }}"
     state: directory
-    owner: "{{ lookup('env', 'USER') }}"
+    owner: "{{ ansible_env.USER }}"
     group: admin
     mode: 0755
 
@@ -51,9 +51,11 @@
   with_items: "{{ brew_required_packages | union(packages) }}"
 
 - name: Linkapps
-  command: "{{ brew_bin }} linkapps"
+  command: "{{ brew_bin }} linkapps {{ item }}"
   register: brew_linkapps_result
+  changed_when: true
   failed_when: 'brew_linkapps_result.stderr != ""'
+  with_items: "{{ packages }}"
 
 - name: Verify brew installation
   command: "{{ brew_bin }} doctor"

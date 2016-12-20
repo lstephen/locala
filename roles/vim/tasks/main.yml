@@ -1,0 +1,6 @@
+
+- name: .vimrc
+  template:
+    src: vimrc.j2
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+
