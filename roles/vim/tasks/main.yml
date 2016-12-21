@@ -4,3 +4,31 @@
     src: vimrc.j2
     dest: "{{ ansible_env.HOME }}/.vimrc"
 
+
+- name: Checkout Pathogen
+  git:
+    repo: "{{ pathogen_repo }}"
+    dest: "{{ pathogen_src_dir }}"
+    version: "{{ pathogen_version }}"
+
+- name: Install Pathogen
+  file:
+    path: "{{ ansible_env.HOME }}/.vim/autoload/pathogen.vim"
+    src: "{{ pathogen_src_dir }}/autoload/pathogen.vim"
+    state: link
+
+- name: Checkout Plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ vim_plugin_src_dir }}/{{ item.repo | basename }}"
+    version: "{{ item.version }}"
+  with_items: "{{ vim_plugins }}"
+
+- name: Install Plugins
+  file:
+    path: "{{ ansible_env.HOME }}/.vim/bundle/{{ item.repo | basename }}"
+    src: "{{ vim_plugin_src_dir}}/{{ item.repo | basename }}"
+    state: link
+  with_items: "{{ vim_plugins }}"
+
+
