@@ -1,0 +1,9 @@
+
+packages:
+  brew:
+    - name: git
+    - name: the_silver_searcher
+  pip:
+    - name: construi
+      version: 41
+

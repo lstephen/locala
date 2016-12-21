@@ -1,12 +1,8 @@
 
-- name: Check taps installed
-  command: "{{ brew_bin }} tap"
-  register: taps_installed_result
-  changed_when: false
-
 - name: Install cask
-  command: "{{ brew_bin }} tap caskroom/cask"
-  when: taps_installed_result.stdout.find('caskroom/cask') == -1
+  shell: "({{ brew_bin }} tap | grep caskroom/cask) || {{ brew_bin }} tap caskroom/cask"
+  register: cask_install_result
+  changed_when: cask_install_result.stdout != 'caskroom/cask'
 
 - name: Verify cask installation
   command: "{{ cask_bin }} doctor"
@@ -16,10 +12,4 @@
   command: "{{ cask_bin }} update"
   register: cask_update_result
   changed_when: "cask_update_result.stdout != 'Already up-to-date.'"
-
-- name: Install packages
-  include: install_cask.yml
-  vars:
-    package: "{{ item }}"
-  with_items: "{{ packages | default([]) }}"
 
