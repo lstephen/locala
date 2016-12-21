@@ -1,0 +1,25 @@
+
+- name: Check taps installed
+  command: "{{ brew_bin }} tap"
+  register: taps_installed_result
+  changed_when: false
+
+- name: Install cask
+  command: "{{ brew_bin }} tap caskroom/cask"
+  when: taps_installed_result.stdout.find('caskroom/cask') == -1
+
+- name: Verify cask installation
+  command: "{{ cask_bin }} doctor"
+  changed_when: false
+
+- name: Update cask
+  command: "{{ cask_bin }} update"
+  register: cask_update_result
+  changed_when: "cask_update_result.stdout != 'Already up-to-date.'"
+
+- name: Install packages
+  include: install_cask.yml
+  vars:
+    package: "{{ item }}"
+  with_items: "{{ packages | default([]) }}"
+

@@ -1,20 +1,21 @@
 
 - name: Check if {{ package }} installed
-  command: "{{ brew_bin }} ls --versions {{ package }}"
+  command: "{{ cask_bin }} ls --versions {{ package }}"
   register: check_installed_result
   failed_when: false
   changed_when: false
 
 - block:
   - name: Install {{ package }}
-    command: "{{ brew_bin }} install {{ package }}"
+    command: "{{ cask_bin }} install {{ package }}"
     when: check_installed_result.rc != 0
     changed_when: true
   rescue:
   - name: Uninstall {{ package }}
-    command: "{{ brew_bin }} uninstall {{ package }}"
+    command: "{{ cask_bin }} uninstall {{ package }}"
     failed_when: false
 
   - name: Fail
     fail:
       msg: Unable to install {{ package }}
+

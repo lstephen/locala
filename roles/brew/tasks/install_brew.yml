@@ -40,10 +40,9 @@
     - src: "{{ brew_install_dir }}/bin/brew"
       path: "{{ brew_bin }}"
 
-- name: Update brew
-  command: "{{ brew_bin }} update"
-  register: brew_update_result
-  changed_when: "brew_update_result.stdout != 'Already up-to-date.'"
+- name: Install Cask
+  command: "{{ brew_bin }} tap caskroom/cask"
+  register: install_cask_result
 
 - name: Install brew required packages
   include: install_package.yml

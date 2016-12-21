@@ -2,16 +2,21 @@
 - name: Install brew
   include: install_brew.yml
 
+- name: Update brew
+  command: "{{ brew_bin }} update"
+  register: brew_update_result
+  changed_when: "brew_update_result.stdout != 'Already up-to-date.'"
+
 - name: Install packages
   include: install_package.yml
   vars:
     package: "{{ item }}"
-  with_items: "{{ packages }}"
+  with_items: "{{ packages | default([]) }}"
 
-- name: Linkapps
-  command: "{{ brew_bin }} linkapps {{ item }}"
-  register: brew_linkapps_result
-  changed_when: true
-  failed_when: 'brew_linkapps_result.stderr != ""'
-  with_items: "{{ packages }}"
+#- name: Linkapps
+#  command: "{{ brew_bin }} linkapps {{ item }}"
+#  register: brew_linkapps_result
+#  changed_when: true
+#  failed_when: 'brew_linkapps_result.stderr != ""'
+#  with_items: "{{ packages }}"
 
