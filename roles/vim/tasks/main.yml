@@ -4,7 +4,6 @@
     src: vimrc.j2
     dest: "{{ ansible_env.HOME }}/.vimrc"
 
-
 - name: Checkout Pathogen
   git:
     repo: "{{ pathogen_repo }}"
@@ -31,4 +30,9 @@
     state: link
   with_items: "{{ vim_plugins }}"
 
-
+- name: Update dock
+  debug:
+    msg: Trigger update dock
+  changed_when: true
+  notify:
+    - update dock

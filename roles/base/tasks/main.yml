@@ -1,0 +1,33 @@
+
+- name: Validate brew package config
+  fail:
+    msg: "Brew installation does not support versions"
+  failed_when: item.value != None
+  changed_when: false
+  with_dict: "{{ packages.brew | default({}) }}"
+
+- name: Install brew packages
+  shell: "{{ brew_bin }} ls --versions {{ item.key }} || {{ brew_bin }} install {{ item.key }}"
+  register: brew_install_result
+  changed_when: brew_install_result.stdout.find(item.key) != 0
+  with_dict: "{{ packages.brew | default({}) }}"
+
+- name: Validate cask package config
+  fail:
+    msg: "Cask installation does not support versions"
+  failed_when: item.value != None
+  changed_when: false
+  with_dict: "{{ packages.cask | default({}) }}"
+
+- name: Install cask packages
+  shell: "{{ cask_bin }} ls --versions {{ item.key }} || {{ cask_bin }} install {{ item.key }}"
+  register: brew_install_result
+  changed_when: brew_install_result.stdout.find(item.key) != 0
+  with_dict: "{{ packages.cask | default({}) }}"
+
+- name: Install pip packages
+  pip:
+    name: "{{ item.key }}"
+    version: "{{ item.value }}"
+  with_dict: "{{ packages.pip | default({}) }}"
+
