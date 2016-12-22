@@ -7,9 +7,9 @@
   with_dict: "{{ packages.brew | default({}) }}"
 
 - name: Install brew packages
-  shell: "{{ brew_bin }} ls --versions {{ item.key }} || {{ brew_bin }} install {{ item.key }}"
-  register: brew_install_result
-  changed_when: brew_install_result.stdout.find(item.key) != 0
+  brew:
+    name: "{{ item.key }}"
+    state: latest
   with_dict: "{{ packages.brew | default({}) }}"
 
 - name: Validate cask package config
