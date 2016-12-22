@@ -1,0 +1,4 @@
+FROM python:2.7
+
+RUN pip install ansible==2.2.0.0 ansible-lint==3.3.3 yapf==0.13.1
+

@@ -1,0 +1,23 @@
+build:
+  dockerfile: docker/Dockerfile.build
+  context: .
+
+targets:
+  build:
+    before:
+      - versiune
+      - syntax-check
+      - lint
+
+  versiune:
+    image: lstephen/versiune:17
+    run: VERSION
+
+  lint:
+    run: ansible-lint all.yml
+
+  syntax-check:
+    run: ansible-playbook --syntax-check --list-tasks all.yml
+
+  format:
+    run: yapf --recursive --in-place library/
