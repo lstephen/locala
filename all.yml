@@ -2,6 +2,7 @@
 - hosts: local
 
   roles:
+    - role: development
     #- role: brew
     #  packages:
     #  - ag
@@ -10,5 +11,5 @@
     #  packages:
     #  - name: construi
     #    version: 41
-    - role: vim
+    #- role: vim
 

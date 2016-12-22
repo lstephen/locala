@@ -1,0 +1,7 @@
+
+packages:
+  brew:
+    git:
+    the_silver_searcher:
+  pip:
+    construi: 41

@@ -39,7 +39,7 @@
     - src: "{{ brew_install_dir }}/bin/brew"
       path: "{{ brew_bin }}"
 
-- name: Install brew packages
+- name: Install required brew packages
   shell: "{{ brew_bin }} ls --versions {{ item }} || {{ brew_bin }} install {{ item }}"
   register: brew_install_result
   changed_when: brew_install_result.stdout.find(item) != 0
