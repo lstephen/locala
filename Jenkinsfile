@@ -19,5 +19,5 @@ def construi_on_node(target) {
 }
 
 stage 'Build'
-construi_on_node build
+construi_on_node 'build'
 
