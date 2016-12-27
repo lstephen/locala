@@ -14,7 +14,7 @@ def install(name):
 
 
 def upgrade(name):
-    return subprocess.check_output(['brew', 'cask', 'update', name])
+    return subprocess.check_output(['brew', 'cask', 'install', '--force', name])
 
 
 def uninstall(name):

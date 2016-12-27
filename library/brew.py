@@ -19,7 +19,7 @@ def install(name):
 
 
 def upgrade(name):
-    subprocess.check_call(['brew', 'update', name])
+    subprocess.check_call(['brew', 'upgrade', name])
 
 
 def uninstall(name):
