@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 from ansible.module_utils.basic import AnsibleModule
@@ -7,6 +8,14 @@ def is_present(name):
     installed = subprocess.check_output(
         ['brew', 'cask', 'list', '-1']).splitlines()
     return name in installed
+
+def is_outdated(name):
+    info = subprocess.check_output(['brew', 'cask', 'info', name]).splitlines()
+
+    latest_version = info[0].split()[-1]
+    installed_version = os.path.basename(info[2].split()[0])
+
+    return latest_version != installed_version
 
 
 def install(name):
@@ -32,10 +41,11 @@ def main():
 
     if state == 'latest':
         if is_present(name):
-            result = upgrade(name)
-
-            changed = 'Already up-to-date.' not in result
-            module.exit_json(changed=changed)
+            if (is_outdated(name)):
+                upgrade(name)
+                module.exit_json(changed=True)
+            else:
+                module.exit_json(changed=False)
 
         else:
             install(name)
