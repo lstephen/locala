@@ -1,0 +1,16 @@
+
+- name: dotfiles
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  with_items:
+    - bashrc
+    - bash_profile
+    - profile
+    - tmux.conf
+
+- name: iterm profile
+  template:
+    src: iterm.profile.j2
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/locala.profile"
+
