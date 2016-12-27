@@ -3,5 +3,7 @@ packages:
   brew:
     git:
     the_silver_searcher:
+  cask:
+    docker:
   pip:
     construi: 41
