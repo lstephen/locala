@@ -3,5 +3,5 @@
 
   roles:
     - role: development
-    - role: ootp
+    - role: personal
 
