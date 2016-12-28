@@ -1,0 +1,11 @@
+
+- name: Install Chrome extensions
+  become: true
+  copy:
+    dest: "/Library/Application Support/Google/Chrome/External Extensions/{{ item }}.json"
+    content: "{ \"external_update_url\": \"https://clients2.google.com/service/update2/crx\" }"
+    owner: root
+    group: admin
+    mode: 0644
+  with_items: "{{ chrome.extensions }}"
+
