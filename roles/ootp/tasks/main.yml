@@ -1,0 +1,10 @@
+
+- name: Install OOTP versions
+  unarchive:
+    src: "{{ item }}.tar.gz"
+    dest: /Applications/
+  with_items:
+    - OOTP5
+    - OOTP6
+    - OOTP6.5
+

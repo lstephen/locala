@@ -1,0 +1,6 @@
+
+- name: Install git lfs
+  command: git lfs version && git lfs install --system
+  register: install_lfs_result
+  changed_when: "'Git LFS initialized' in install_lfs_result.stdout"
+
