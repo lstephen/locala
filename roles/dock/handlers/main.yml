@@ -1,6 +1,6 @@
 
 - name: update dock
-  shell: (defaults read com.apple.dock | grep {{ item.key }}) ||  defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/{{ item.key }}.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
+  shell: (defaults read com.apple.dock | grep "{{ item.key }}") ||  defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>/Applications/{{ item.key }}.app</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>'
   register: update_dock_result
   changed_when: update_dock_result.stdout.find(item.key) == -1
   with_dict: "{{ dock | default({}) }}"

@@ -4,5 +4,7 @@ packages:
     git:
     git-lfs:
     the_silver_searcher:
+  cask:
+    docker:
   pip:
     construi: 41

@@ -1,0 +1,22 @@
+
+- name: dotfiles
+  template:
+    src: "{{ item }}.j2"
+    dest: "{{ ansible_env.HOME }}/.{{ item }}"
+  with_items:
+    - bashrc
+    - bash_profile
+    - profile
+    - tmux.conf
+
+- name: iterm hide scrollbar
+  shell: "[ $(defaults read com.googlecode.iterm2 HideScrollbar) == 1 ] && echo 'Unchanged.' || defaults write com.googlecode.iterm2 HideScrollbar 1"
+  register: iterm_preference_result
+  changed_when: "'Unchanged' not in iterm_preference_result.stdout"
+
+- name: iterm profile
+  template:
+    src: iterm.profile.j2
+    dest: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/locala.profile"
+
+
