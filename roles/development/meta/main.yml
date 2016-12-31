@@ -1,6 +1,7 @@
 dependencies:
   - role: brew
   - role: cask
+  - role: git
   - role: terminal
   - role: vim
 

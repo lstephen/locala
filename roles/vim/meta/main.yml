@@ -2,3 +2,4 @@ dependencies:
   - role: brew
   - role: cask
   - role: dock
+  - role: git
