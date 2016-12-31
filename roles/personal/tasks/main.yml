@@ -1,4 +1,12 @@
 
+- name: Install apps
+  cask:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - google-chrome
+    - skype
+
 - name: Install Chrome extensions
   become: true
   copy:
@@ -7,5 +15,5 @@
     owner: root
     group: admin
     mode: 0644
-  with_items: "{{ chrome.extensions }}"
+  with_items: "{{ chrome_extensions }}"
 
