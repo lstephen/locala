@@ -1,8 +1,19 @@
 
+- name: Install wineskin-winery
+  cask:
+    name: wineskin-winery
+    state: latest
+
+# We use the creates argument here as the contents of the app folder are
+# constantly changing (e.g., updated league files), and that means that
+# ansible always extracts the archive.
+#
+# If an upgraded package is to be installed the pervious app must be removed
 - name: Install OOTP versions
   unarchive:
     src: "{{ item }}.tar.gz"
     dest: /Applications/
+    creates: /Applications/{{ item }}.app
   with_items:
     - OOTP5
     - OOTP6

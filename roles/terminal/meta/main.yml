@@ -1,6 +1,7 @@
+
 dependencies:
   - role: brew
   - role: cask
   - role: dock
-    name: MacVim
-  - role: git
+    name: iTerm
+

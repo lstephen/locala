@@ -5,8 +5,3 @@ brew_src_dir: /usr/local/src/brew-{{ brew_version }}
 brew_src_archive: "{{ brew_src_dir }}/brew-{{ brew_version }}.tar.gz"
 brew_install_dir: /usr/local/Homebrew
 
-brew_required_packages:
-  - gmp@4
-  - mpfr@2
-  - ppl@0.11
-

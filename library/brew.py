@@ -2,6 +2,8 @@ import subprocess
 
 from ansible.module_utils.basic import AnsibleModule
 
+#TODO: Use ansible homebrew task
+# - Ansible homebrewk task doesn't yet support @ in package names
 
 def is_present(name):
     installed = subprocess.check_output(['brew', 'list', '-1']).splitlines()
