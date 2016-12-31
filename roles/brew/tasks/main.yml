@@ -53,7 +53,6 @@
   changed_when: false
 
 - name: Update brew
-  command: "{{ brew_bin }} update"
-  register: brew_update_result
-  changed_when: "brew_update_result.stdout != 'Already up-to-date.'"
+  homebrew:
+    update_homebrew: yes
 

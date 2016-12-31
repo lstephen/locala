@@ -1,15 +1,14 @@
 
-- name: Install cask
-  shell: "({{ brew_bin }} tap | grep caskroom/cask) || {{ brew_bin }} tap caskroom/cask"
-  register: cask_install_result
-  changed_when: cask_install_result.stdout != 'caskroom/cask'
+- name: Tap cask
+  homebrew_tap:
+    name: caskroom/cask
+    state: present
 
 - name: Verify cask installation
   command: "{{ cask_bin }} doctor"
   changed_when: false
 
 - name: Update cask
-  command: "{{ cask_bin }} update"
-  register: cask_update_result
-  changed_when: "cask_update_result.stdout != 'Already up-to-date.'"
+  homebrew:
+    update_homebrew: yes
 
