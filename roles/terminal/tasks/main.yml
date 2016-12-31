@@ -1,4 +1,19 @@
 
+# doxygen shouldn't be necessary here, but it's not installed with tmux
+# and 'brew doctor' will complain about it missing
+- name: Install brew packages
+  brew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - doxygen
+    - tmux
+
+- name: Install iterm2
+  cask:
+    name: iterm2
+    state: latest
+
 - name: dotfiles
   template:
     src: "{{ item }}.j2"
