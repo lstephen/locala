@@ -43,7 +43,10 @@
   brew:
     name: "{{ item }}"
     state: latest
-  with_items: "{{ brew_required_packages }}"
+  with_items:
+    - gmp@4
+    - mpfr@2
+    - ppl@0.11
 
 - name: Verify brew installation
   command: "{{ brew_bin }} doctor"

@@ -1,10 +1,4 @@
 
-packages:
-  brew:
-    vim:
-  cask:
-    macvim:
-
 dock:
   MacVim:
 

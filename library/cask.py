@@ -3,6 +3,7 @@ import subprocess
 
 from ansible.module_utils.basic import AnsibleModule
 
+# Ansible homebrew_cask task does not support a 'latest' state.
 
 def is_present(name):
     installed = subprocess.check_output(

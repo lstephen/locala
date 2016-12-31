@@ -1,4 +1,24 @@
 
+- name: Install brew packages
+  brew:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - git
+    - git-lfs
+    - the_silver_searcher
+
+- name: Install docker
+  cask:
+    name: docker
+    state: latest
+
+- name: Install construi
+  pip:
+    name: construi
+    version: 41
+    state: present
+
 - name: Install git lfs
   command: git lfs version && git lfs install --system
   args:
