@@ -25,9 +25,10 @@
     - tmux.conf
 
 - name: iterm hide scrollbar
-  shell: "[ $(defaults read com.googlecode.iterm2 HideScrollbar) == 1 ] && echo 'Unchanged.' || defaults write com.googlecode.iterm2 HideScrollbar 1"
-  register: iterm_preference_result
-  changed_when: "'Unchanged' not in iterm_preference_result.stdout"
+  osx_defaults:
+    domain: com.googlecode.iterm2
+    key: HideScrollbar
+    value: 1
 
 - name: iterm profile
   template:

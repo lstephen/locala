@@ -2,4 +2,6 @@
 dependencies:
   - role: brew
   - role: cask
+  - role: dock
+    name: iTerm
 

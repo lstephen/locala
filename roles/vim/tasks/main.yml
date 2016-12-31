@@ -40,9 +40,3 @@
     state: link
   with_items: "{{ vim_plugins }}"
 
-- name: Update dock
-  debug:
-    msg: Trigger update dock
-  changed_when: true
-  notify:
-    - update dock

@@ -1,7 +1,4 @@
 
-dock:
-  MacVim:
-
 vim_plugin_src_dir: /usr/local/src
 
 pathogen_repo: https://github.com/tpope/vim-pathogen
