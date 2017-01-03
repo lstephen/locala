@@ -40,3 +40,7 @@
     state: link
   with_items: "{{ vim_plugins }}"
 
+- name: Install sqlint
+  gem:
+    name: sqlint
+    version: 0.1.4
