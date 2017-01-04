@@ -4,4 +4,5 @@ dependencies:
   - role: cask
   - role: dock
     name: iTerm
+  - role: git
 
