@@ -1,5 +1,4 @@
 # {{ ansible_managed }}
-#
 {% set khd = "/usr/local/bin/khd" %}
 {% set kwmc = "/usr/local/bin/kwmc" %}
 
@@ -36,7 +35,7 @@ prefix - m   : {{ kwmc }} window -mk focused
 # Swap window
 prefix - j   : {{ kwmc }} window -s prev
 prefix - k   : {{ kwmc }} window -s next
-prefix - x   : {{ kwmc }} window -m mark
+prefix - x   : {{ kwmc }} window -s mark
 
 # Move Focused Window To Screen
 {% for n in range(9) %}
