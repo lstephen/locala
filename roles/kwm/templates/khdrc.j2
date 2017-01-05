@@ -1,0 +1,54 @@
+# {{ ansible_managed }}
+{% set khd = "/usr/local/bin/khd" %}
+{% set kwmc = "/usr/local/bin/kwmc" %}
+
+# Enable kwm compatibility mode
+khd kwm on
+
+# Enable the prefix mode
+khd mode prefix prefix on
+khd mode prefix timeout 0.75
+
+# Activate prefix mode
+ctrl - s     : {{ khd }} -e "mode activate prefix"
+
+# Launch iTerm2
+cmd - return : osascript -e "tell application \"iTerm\" to create window with default profile"
+cmd - e      : /usr/local/bin/mvim > /dev/null 2>&1
+
+# Change window focus
+cmd - j   : {{ kwmc }} window -f prev
+cmd - k   : {{ kwmc }} window -f next
+
+# Change display foccus
+cmd - h   : {{ kwmc }} display -f 0
+cmd - l   : {{ kwmc }} display -f 1
+
+# Rotate Window-Tree By 90degrees (Clockwise)
+prefix - r   : {{ kwmc }} tree rotate 90
+prefix - e   : {{ kwmc }} tree rotate 270
+
+# Set Space Tiling Mode
+prefix - a   : {{ kwmc }} space -t bsp
+prefix - s   : {{ kwmc }} space -t monocle
+prefix - d   : {{ kwmc }} space -t float
+
+# Mark window
+prefix - m   : {{ kwmc }} window -mk focused
+
+# Swap window
+prefix - j   : {{ kwmc }} window -s prev
+prefix - k   : {{ kwmc }} window -s next
+prefix - x   : {{ kwmc }} window -s mark
+
+# Move Focused Window To Space
+{% for n in range(9) %}
+prefix - {{ n }} : {{ kwmc }} window -m space {{ n }}
+{% endfor %}
+
+# Move Focused Window To Display
+prefix - h : {{ kwmc }} window -m display 0
+prefix - l : {{ kwmc }} window -m display 1
+
+
+

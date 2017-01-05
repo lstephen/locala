@@ -14,6 +14,12 @@
     name: iterm2
     state: latest
 
+- name: Install tmux-better-mouse-mode
+  git:
+    repo: https://github.com/nhdaly/tmux-better-mouse-mode
+    dest: "{{ tmux_plugin_src_dir }}/tmux-better-mouse-mode"
+    version: 4c686e5a1f381e072b102df63f3f8a17426fb107
+
 - name: dotfiles
   template:
     src: "{{ item }}.j2"

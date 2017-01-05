@@ -19,12 +19,14 @@
     repo: "{{ pathogen_repo }}"
     dest: "{{ pathogen_src_dir }}"
     version: "{{ pathogen_version }}"
+  notify: update helptags
 
 - name: Install Pathogen
   file:
     path: "{{ ansible_env.HOME }}/.vim/autoload/pathogen.vim"
     src: "{{ pathogen_src_dir }}/autoload/pathogen.vim"
     state: link
+  notify: update helptags
 
 - name: Checkout Plugins
   git:
@@ -32,6 +34,7 @@
     dest: "{{ vim_plugin_src_dir }}/{{ item.repo | basename }}"
     version: "{{ item.version }}"
   with_items: "{{ vim_plugins }}"
+  notify: update helptags
 
 - name: Install Plugins
   file:
@@ -39,6 +42,7 @@
     src: "{{ vim_plugin_src_dir}}/{{ item.repo | basename }}"
     state: link
   with_items: "{{ vim_plugins }}"
+  notify: update helptags
 
 - name: Install sqlint
   gem:
