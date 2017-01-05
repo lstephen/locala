@@ -14,7 +14,10 @@ def is_outdated(name):
     info = subprocess.check_output(['brew', 'cask', 'info', name]).splitlines()
 
     latest_version = info[0].split()[-1]
-    installed_version = os.path.basename(info[2].split()[0])
+
+    for line in info:
+        if line.startswith('/usr/local/Caskroom'):
+            installed_version = os.path.basename(line.split()[0])
 
     return latest_version != installed_version
 

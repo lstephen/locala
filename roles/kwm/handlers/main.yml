@@ -1,0 +1,9 @@
+
+- name: restart kwm
+  command: brew services restart kwm
+  changed_when: True
+
+- name: restart khd
+  command: brew services restart khd
+  changed_when: True
+
