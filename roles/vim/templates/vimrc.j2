@@ -25,6 +25,9 @@ map K i<Enter><ESC>l
 nnoremap <C-F> :Ag! "<C-R><C-W>"<CR>
 nnoremap <C-b> :CtrlPBuffer<CR>
 
+" Session switching with Procession
+map <C-o> :Procession ~/Projects/
+
 set guioptions+=c
 set noea
 set list
@@ -92,6 +95,8 @@ function! StatusLine()
   let format = "%{&ff}"
   let encoding = "%{strlen(&fenc)?&fenc:'none'}"
 
+  let project = fnamemodify(getcwd(), ":t")
+
   let normalMode = yellow . "%{&cul&&mode()=='n'?'N':''}" . reset
   let insertMode = blue . "%{&cul&&mode()=='i'?'I':''}" . reset
   let replaceMode = red . "%{&cul&&mode()=='r'?'R':''}" . reset
@@ -154,7 +159,8 @@ function! StatusLine()
   let s .= currentMode . separator . file
 
   let s .= "%=\ "
-  let s .= format . grey . "/" . reset . encoding
+  " let s .= format . grey . "/" . reset . encoding
+  let s .= orange . project
   let s .= separator . syntastic
   let s .= separator . "%3l:%2v"
 
