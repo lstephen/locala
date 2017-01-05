@@ -17,3 +17,8 @@
     version: 41
     state: present
 
+- name: Make project directory
+  file:
+    path: "{{ ansible_env.HOME }}/Projects"
+    state: directory
+
