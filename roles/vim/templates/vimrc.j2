@@ -171,11 +171,11 @@ set statusline=%!StatusLine()
 
 execute pathogen#infect()
 
-if executable('ag')
-  let g:ctrlp_user_command='ag -l --nocolor -g "" %s'
+if executable('/usr/local/bin/ag')
+  let g:ctrlp_user_command='/usr/local/bin/ag -l --nocolor -g "" %s'
   let g:ctrlp_use_caching=0
 
-  let g:ackprg = 'ag --vimgrep --smart-case'
+  let g:ackprg = '/usr/local/bin/ag --vimgrep --smart-case'
   cnoreabbrev Ag Ack
 endif
 
@@ -260,4 +260,19 @@ function! Tabline()
 endfunction
 set tabline=%!Tabline()
 
+function! ChangeSession(name)
+  if !isdirectory(expand(a:name))
+    echohl ErrorMsg
+    echomsg "Not a directory"
+    echohl None
+    return
+  endif
 
+  silent execute 'Prosession' expand(a:name)
+
+  silent execute 'cd' expand(a:name)
+  echo "Switched to " . a:name
+endfunction
+
+command! -nargs=1 -complete=file ChangeSession call ChangeSession(<q-args>)
+map <C-o> :ChangeSession ~/Projects/

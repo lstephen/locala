@@ -1,4 +1,5 @@
 
+vim_bundle_dir: "{{ ansible_env.HOME }}/.vim/bundle"
 vim_plugin_src_dir: /usr/local/src
 
 pathogen_repo: https://github.com/tpope/vim-pathogen
