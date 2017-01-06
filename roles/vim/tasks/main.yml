@@ -28,6 +28,18 @@
     state: link
   notify: update helptags
 
+- name: List installed plugins
+  command: ls {{ vim_bundle_dir }}
+  register: ls_vim_plugins
+  changed_when: false
+
+- name: Clear non-managed plugins
+  file:
+    state: absent
+    path: "{{ vim_bundle_dir }}/{{ item }}"
+  with_items: "{{ ls_vim_plugins.stdout_lines | difference(vim_plugins | map(attribute='repo') | map('basename')) }}"
+  notify: update helptags
+
 - name: Checkout Plugins
   git:
     repo: "{{ item.repo }}"
@@ -38,7 +50,7 @@
 
 - name: Install Plugins
   file:
-    path: "{{ ansible_env.HOME }}/.vim/bundle/{{ item.repo | basename }}"
+    path: "{{ vim_bundle_dir }}/{{ item.repo | basename }}"
     src: "{{ vim_plugin_src_dir}}/{{ item.repo | basename }}"
     state: link
   with_items: "{{ vim_plugins }}"
