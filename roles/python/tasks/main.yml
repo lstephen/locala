@@ -1,0 +1,6 @@
+
+- name: Install python
+  brew:
+    name: python
+    state: latest
+

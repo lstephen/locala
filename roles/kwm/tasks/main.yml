@@ -1,20 +1,11 @@
 
-- name: Install taps
-  homebrew_tap:
-    name: "{{ item }}"
-    state: present
-  with_items:
-    - koekeishiya/khd
-    - koekeishiya/kwm
-
-
 - name: Install apps
   brew:
     name: "{{ item }}"
     state: latest
   with_items:
-    - khd
-    - kwm
+    - koekeishiya/formulae/khd
+    - koekeishiya/formulae/kwm
 
 - name: kwm config directory
   file:
@@ -40,5 +31,4 @@
   with_items:
     - khd
     - kwm
-
 

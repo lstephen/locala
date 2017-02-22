@@ -19,7 +19,6 @@ def is_outdated(name):
 def install(name):
     subprocess.check_call(['brew', 'install', name])
 
-
 def upgrade(name):
     subprocess.check_call(['brew', 'upgrade', name])
 
