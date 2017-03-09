@@ -14,7 +14,7 @@
 - name: Install construi
   pip:
     name: construi
-    version: 44
+    version: 45
     state: present
 
 - name: Make project directory
