@@ -25,6 +25,8 @@ vim_plugins:
     version: "v0.5.5"
   - repo: https://github.com/tpope/vim-sensible.git
     version: "v1.1"
+  - repo: https://github.com/tpope/vim-sleuth.git
+    version: 0ffa819630678e442fc695c51a75ced640c8a95f
   - repo: https://github.com/tpope/vim-unimpaired.git
     version: 11dc568dbfd7a56866a4354c737515769f08e9fe
 
