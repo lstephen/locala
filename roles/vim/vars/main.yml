@@ -11,8 +11,6 @@ vim_plugins:
     version: "1.0.9"
   - repo: https://github.com/ctrlpvim/ctrlp.vim
     version: "1.80"
-  - repo: https://github.com/scrooloose/nerdtree.git
-    version: "5.0.0"
   - repo: https://github.com/vim-syntastic/syntastic.git
     version: "3.8.0"
   - repo: https://github.com/altercation/vim-colors-solarized
@@ -29,5 +27,7 @@ vim_plugins:
     version: 0ffa819630678e442fc695c51a75ced640c8a95f
   - repo: https://github.com/tpope/vim-unimpaired.git
     version: 11dc568dbfd7a56866a4354c737515769f08e9fe
+  - repo: https://github.com/tpope/vim-vinegar.git
+    version: c795cb739347cbddeeb288c3c35da9f140a513
 
 

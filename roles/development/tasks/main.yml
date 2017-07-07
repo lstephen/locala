@@ -17,6 +17,12 @@
     version: 45
     state: present
 
+- name: Configure ag
+  template:
+    src: agignore.j2
+    dest: "{{ ansible_env.HOME }}/.agignore"
+
+
 - name: Make project directory
   file:
     path: "{{ ansible_env.HOME }}/Projects"
