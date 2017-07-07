@@ -6,6 +6,7 @@
   with_items:
     - google-chrome
     - skype
+    - spectacle
 
 - name: Install Chrome extensions
   become: true

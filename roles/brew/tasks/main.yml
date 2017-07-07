@@ -49,6 +49,11 @@
     - mpfr@2
     - ppl@0.11
 
+- name: Prune
+  command: "{{ brew_bin }} prune"
+  register: brew_prune_result
+  changed_when: brew_prune_result != ""
+
 - name: Verify brew installation
   command: "{{ brew_bin }} doctor"
   changed_when: false
