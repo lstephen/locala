@@ -5,6 +5,7 @@
     state: latest
   with_items:
     - google-chrome
+    - kindle
     - skype
     - spectacle
 

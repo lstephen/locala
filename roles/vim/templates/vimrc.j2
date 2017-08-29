@@ -111,57 +111,12 @@ function! StatusLine()
 
   let file = "%<" . modifiedFile . unmodifiedFile . readonlyFile
 
-  let syntastic_disabled = grey . "%{!&cul?'\ /\ ':'-/-'}"
-  let syntastic = syntastic_disabled
-
-  if &ft != ''
-    \ && len(g:SyntasticRegistry.Instance().getCheckersAvailable(&ft, [])) > 0
-
-    let synErrorCount = len(g:SyntasticLoclist.current().errors())
-    let warnings = g:SyntasticLoclist.current().warnings()
-
-    if type(warnings) == type([])
-      let synWarnCount = len(warnings)
-    else
-      let synWarnCount = warnings
-    endif
-
-    let isNoErrors = synErrorCount == "0"
-    let isNoWarns = synWarnCount == "0"
-
-    if len(synErrorCount) > 1
-      let synErrorCount ="T"
-    endif
-
-    if len(synWarnCount) > 1
-      let synWarnCount = "T"
-    endif
-
-    let synWarnCount = "%{&cul?'" . synWarnCount . "':' '}"
-    let synErrorCount = "%{&cul?'" . synErrorCount . "':' '}"
-
-    if isNoErrors
-      let errs = grey . synErrorCount . reset
-    else
-      let errs = red . synErrorCount . reset
-    endif
-
-    if isNoWarns
-      let warns = grey . synWarnCount . reset
-    else
-      let warns = yellow . synWarnCount . reset
-    endif
-
-    let syntastic = errs . grey . "/" . reset . warns
-  endif
-
   let s = ''
   let s .= currentMode . separator . file
 
   let s .= "%=\ "
   " let s .= format . grey . "/" . reset . encoding
   let s .= orange . project
-  let s .= separator . syntastic
   let s .= separator . "%3l:%2v"
 
   return s
@@ -189,33 +144,9 @@ if $TERM == 'screen-256color'
   autocmd ColorScheme * execute 'source ~/.vimrc'
 endif
 
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeChDirMode=2
-let g:NERDTreeQuitOnOpen=1
-let g:NERDTreeShowBookmarks=1
-
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
-let g:syntastic_enable_ballons=0
-let g:syntastic_always_populate_loc_list=1
-let g:syntastic_javascript_checkers = []
-
 let g:ctrlp_show_hidden=1
 
-" Always display the sign column
-autocmd BufEnter * sign define dummy
-autocmd BufEnter * execute 'sign place 9999 line=1 name=dummy buffer=' . bufnr('')
-
 hi! SignColumn guibg=#073642 ctermbg=0
-
-hi SyntasticError ctermfg=NONE ctermbg=NONE cterm=NONE gui=undercurl guisp=#b58900
-hi SyntasticWarning gui=undercurl guisp=#dc322f ctermfg=NONE ctermbg=NONE cterm=NONE
-
-hi SyntasticErrorSign guifg=#dc322f  guibg=#073642 gui=bold ctermfg=1 cterm=bold ctermbg=0
-hi SyntasticWarningSign guifg=#b58900 guibg=#073642 gui=bold ctermfg=3 cterm=bold ctermbg=0s
-
-hi StatusLine guifg=#073642 ctermfg=0 guibg=#b58900 ctermbg=3
-hi StatusLineNC guifg=#073642 ctermfg=0 guibg=#586e75 ctermbg=10
 
 hi TabLineSel guibg=#cb4b16 ctermbg=9 guifg=#073642 ctermbg=0
 hi TabLine guifg=#586e75 ctermfg=10 guibg=#073642 ctermbg=0
@@ -223,8 +154,8 @@ hi TabLineFill guifg=#586e75 ctermfg=10 guibg=#073642 ctermbg=0
 
 hi CursorLineNr gui=NONE cterm=NONE guifg=#93a1a1 ctermfg=14 guibg=#073642 ctermbg=0
 
-hi SyntasticWarning gui=undercurl guisp=#b58900 cterm=undercurl
-hi SyntasticError gui=undercurl guisp=#dc322f cterm=undercurl
+hi StatusLine guifg=#073642 ctermfg=0 guibg=#b58900 ctermbg=3
+hi StatusLineNC guifg=#073642 ctermfg=0 guibg=#586e75 ctermbg=10
 
 "" Status line colors
 " Light Grey (base0)
