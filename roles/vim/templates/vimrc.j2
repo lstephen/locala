@@ -54,7 +54,7 @@ function! g:EnableColorColumn()
 endfunction
 
 function! g:EnableColorColumnSilent()
-  execute "set colorcolumn=" . join(range(80,255), ',')
+  execute "set colorcolumn=80," . join(range(100,255), ',')
   hi OverLength guibg=#073642 ctermbg=0
 endfunction
 

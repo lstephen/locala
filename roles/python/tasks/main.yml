@@ -1,6 +1,6 @@
 
 - name: Install python
   brew:
-    name: python
+    name: python2
     state: latest
 
