@@ -2,6 +2,7 @@
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
 
+brew 'bash-completion'
 brew 'doxygen'
 brew 'gnu-tar'
 brew 'git'

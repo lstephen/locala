@@ -17,6 +17,9 @@ brew doctor
 echo "Packages not listed in Brewfile..."
 brew bundle cleanup
 
+echo "Setting python path..."
+export PATH="$(brew --prefix)/opt/python/libexec/bin:$PATH"
+
 pip2 install ansible==2.2.1.0
 
 echo "Configuring..."
