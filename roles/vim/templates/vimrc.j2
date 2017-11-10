@@ -140,9 +140,7 @@ let g:solarized_menu=0
 set background=dark
 colorscheme solarized
 
-if $TERM == 'screen-256color'
-  autocmd ColorScheme * execute 'source ~/.vimrc'
-endif
+autocmd ColorScheme * execute 'source ~/.vimrc'
 
 let g:ctrlp_show_hidden=1
 

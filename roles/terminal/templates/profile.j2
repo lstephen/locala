@@ -1,7 +1,6 @@
 # {{ ansible_managed }}
 
 export PATH="/usr/local/bin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 export PATH="$PATH:/Library/Haskell/bin"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
@@ -33,22 +32,7 @@ function git_ps1() {
     printf $fmt $branch
   fi
 }
-
-function rvm_ps1() {
-  fmt="$base01:$blue%s"
-  rvm=`rvm current`
-  if [ "$rvm" == "system" ]
-  then
-    :
-  else
-    printf -- $fmt $rvm
-  fi
-}
-
-export PS1='\[\033]0;\w\007\]\n\[$user_color\]\u\[$base01\]@\[$green\]\h\[$base01\]:\[$orange\]\w$(git_ps1)$(rvm_ps1)\[$base01\]\n\$ \[$reset\]'
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+export PS1='\[\033]0;\w\007\]\n\[$user_color\]\u\[$base01\]@\[$green\]\h\[$base01\]:\[$orange\]\w$(git_ps1)\[$base01\]\n\$ \[$reset\]'
 
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 alias ls="ls -G"
@@ -59,7 +43,6 @@ alias timestamp="date -u +%Y.%m.%d_%H.%M"
 alias dotfiles="git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
 [[ -f ~/.git-completion.bash ]] && . ~/.git-completion.bash
-[[ -f ~/.rvm/scripts/completion ]] && . ~/.rvm/scripts/completion
 
 [[ $TERM_PROGRAM == 'iTerm.app' ]] && echo -e "\033]50;SetProfile=Locala\a"
 
