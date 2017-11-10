@@ -3,13 +3,11 @@
 set -e
 set -x
 
-if [[ $(which pip) == '' ]];
+if [[ $(which brew) == '' ]]
 then
-  sudo /usr/bin/easy_install pip==9.0.1
-  pip install ansible==2.2.1.0
-  sudo rm /usr/local/bin/pip*
-else
-  pip install ansible==2.2.1.0
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
+brew install gnu-tar python2
+pip2 install ansible==2.2.1.0
 ansible-playbook all.yml $ANSIBLE_FLAGS

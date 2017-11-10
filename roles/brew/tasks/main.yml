@@ -1,53 +1,50 @@
-- name: Setup /usr/local
-  become: true
-  file:
-    path: /usr/local
-    state: directory
-    owner: "{{ ansible_env.USER }}"
-    group: admin
-    mode: 0755
+#- name: Setup /usr/local
+#  become: true
+#  file:
+#    path: /usr/local
+#    state: directory
+#    owner: "{{ ansible_env.USER }}"
+#    group: admin
+#    mode: 0755
 
-- name: Setup brew src dir
-  become: true
-  file:
-    path: "{{ brew_src_dir }}"
-    state: directory
-    owner: "{{ ansible_env.USER }}"
-    group: admin
-    mode: 0755
+#- name: Setup brew src dir
+#  become: true
+#  file:
+#    path: "{{ brew_src_dir }}"
+#    state: diectory
+#    owner: "{{ ansible_env.USER }}"
+#    group: admin
+#    mode: 0755
 
-- name: Download brew
-  get_url:
-    url: https://github.com/Homebrew/brew/archive/{{ brew_version }}.tar.gz
-    dest: "{{ brew_src_archive }}"
-  register: brew_download_result
+#  get_url:
+#    dest: "{{ brew_src_archive }}"
+#  register: brew_download_result
 
-- name: Extract brew
-  unarchive:
-    src: "{{ brew_src_archive }}"
-    dest: /usr/local/src
-    remote_src: yes
-  when: brew_download_result.changed
+#- name: Extract brew
+#  unarchive:
+#    src: "{{ brew_src_archive }}"
+#    dest: /usr/local/src
+#    remote_src: yes
+#  when: brew_download_result.changed
 
-- name: Setup links
-  file:
-    src: "{{ item.src }}"
-    path: "{{ item.path }}"
-    state: link
-  with_items:
-    - src: "{{ brew_src_dir }}"
-      path: "{{ brew_install_dir }}"
-    - src: "{{ brew_install_dir }}/bin/brew"
-      path: "{{ brew_bin }}"
+#- name: Setup links
+#  file:
+#    src: "{{ item.src }}"
+#    path: "{{ item.path }}"
+#    state: link
+#  with_items:
+#    - src: "{{ brew_src_dir }}"
+#      path: "{{ brew_install_dir }}"
+#    - src: "{{ brew_install_dir }}/bin/brew"
+#      path: "{{ brew_bin }}"
 
-- name: Install required brew packages
-  brew:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - gmp@4
-    - mpfr@2
-    - ppl@0.11
+#- name: Install required brew packages
+#  brew:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#    - gmp@4
+#    - mpfr@2
 
 - name: Prune
   command: "{{ brew_bin }} prune"

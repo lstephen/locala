@@ -9,6 +9,15 @@
     - skype
     - spectacle
 
+- name: Make Chrome extensions dir
+  become: true
+  file:
+    path: "/Library/Application Support/Google/Chrome/External Extensions"
+    state: directory
+    owner: root
+    group: admin
+    mode: 0755
+
 - name: Install Chrome extensions
   become: true
   copy:

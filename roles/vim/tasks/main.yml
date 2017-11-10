@@ -14,6 +14,17 @@
     src: vimrc.j2
     dest: "{{ ansible_env.HOME }}/.vimrc"
 
+- name: vim directories
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: "{{ ansible_env.USER }}"
+  with_items:
+    - "{{ ansible_env.HOME }}/.vim/autoload"
+    - "{{ ansible_env.HOME }}/.vim/backup"
+    - "{{ ansible_env.HOME }}/.vim/swp"
+    - "{{ vim_bundle_dir }}"
+
 - name: Checkout Pathogen
   git:
     repo: "{{ pathogen_repo }}"

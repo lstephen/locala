@@ -7,6 +7,7 @@
     state: latest
   with_items:
     - doxygen
+    - reattach-to-user-namespace
     - tmux
 
 - name: Install iterm2
@@ -35,6 +36,12 @@
     domain: com.googlecode.iterm2
     key: HideScrollbar
     value: 1
+
+- name: mkdir iterm profile dir
+  file:
+    path: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles"
+    state: directory
+    owner: "{{ ansible_env.USER }}"
 
 - name: iterm profile
   template:
