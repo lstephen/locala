@@ -2,23 +2,3 @@
 dock:
   Google Chrome:
 
-
-chrome_extensions:
-  # Adblock plus
-  - cfhdojbkjhnklbpkdaibdccddilifddb
-  # Column Copy
-  - lapbbfoohlcmlbdaakldmmallcbcbpjb
-  # Javadoc Search Frame
-  - mfgkihmpcjjnijmkchojlbccbmhcdfcd
-  # LastPass
-  - hdokiejnpimakedhajhdlcegeplioahd
-  # Native HLS Playback
-  - emnphkkblegpebimobpbekeedfgemhof
-  # Privacy Badger
-  - pkehgijcmpdhfbdbbnkijodmdjhbjlgp
-  # Reddit Enhancement Suite
-  - kbmfpngjjgdllneeigpgjifpgocmfgmb
-  # ScrollMaps
-  - jifommjndpnefcfplgnbhabocomgdjjg
-  # Tab Wrangler
-  - egnjhciaieeiiohknchakcodbpgjnchh

@@ -1,12 +1,4 @@
 
-- name: Install brew packages
-  brew:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - git
-    - git-lfs
-
 - name: Install git lfs
   command: git lfs version && git lfs install --system
   args:

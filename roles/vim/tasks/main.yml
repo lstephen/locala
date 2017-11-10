@@ -1,14 +1,4 @@
 
-- name: Install vim
-  brew:
-    name: vim
-    state: latest
-
-- name: Install MacVim
-  cask:
-    name: macvim
-    state: latest
-
 - name: .vimrc
   template:
     src: vimrc.j2

@@ -1,12 +1,7 @@
 ---
 - hosts: local
 
-  # We do python first to get us a brew managed python install
-  # rather than the system python.
-  # This helps us with issues around how Apple will prioritize system
-  # install packages (e.g., six)
   roles:
-    - role: python
     - role: development
     - role: personal
 

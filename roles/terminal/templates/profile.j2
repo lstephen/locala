@@ -1,6 +1,7 @@
 # {{ ansible_managed }}
 
 export PATH="/usr/local/bin:$PATH"
+export PATH="$(brew --prefix)/opt/python/libexec/bin:$PATH"
 export PATH="$PATH:/Library/Haskell/bin"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
