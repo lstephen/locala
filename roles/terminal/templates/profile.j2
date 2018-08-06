@@ -48,6 +48,11 @@ then
   . $(brew --prefix)/etc/bash_completion
 fi
 
+if [ -f $(brew --prefix)/bin/rbenv ]
+then
+  eval "$(rbenv init -)"
+fi
+
 [[ $TERM_PROGRAM == 'iTerm.app' ]] && echo -e "\033]50;SetProfile=Locala\a"
 
 [[ $TERM_PROGRAM == 'Apple_Terminal' || $TERM_PROGRAM == 'iTerm.app' ]] && [[ ! $TERM =~ screen ]] && exec tmux -2
