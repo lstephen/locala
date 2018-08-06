@@ -73,57 +73,6 @@ call g:EnableColorColumnSilent()
 
 match OverLength /\%77v.*/
 
-" We also use &cul to determine whether we're the active
-" window or not for use in statusline
-augroup BgHighlight
-  autocmd!
-  autocmd WinEnter * set cul
-  autocmd WinLeave * set nocul
-augroup END
-set cul
-
-function! StatusLine()
-  let grey="%2*"
-  let orange="%3*"
-  let blue="%4*"
-  let red="%5*"
-  let green="%6*"
-  let yellow="%7*"
-  let reset="%*"
-
-  let separator = grey . "\ ~\ " . reset
-  let format = "%{&ff}"
-  let encoding = "%{strlen(&fenc)?&fenc:'none'}"
-
-  let project = fnamemodify(getcwd(), ":t")
-
-  let normalMode = yellow . "%{&cul&&mode()=='n'?'N':''}" . reset
-  let insertMode = blue . "%{&cul&&mode()=='i'?'I':''}" . reset
-  let replaceMode = red . "%{&cul&&mode()=='r'?'R':''}" . reset
-  let visualMode = green . "%{&cul&&(mode()=='v'||mode()=='V'||mode()=='')?'V':''}" . reset
-  let noMode = "%{&cul?'':'\ '}"
-
-  let currentMode = normalMode . insertMode . replaceMode . visualMode . noMode
-
-  let modifiedFile = orange . "%{&modified?bufname('%'):''}" . reset
-  let unmodifiedFile = green . "%{!&modified&&!&readonly?bufname('%'):''}" . reset
-  let readonlyFile = red . "%{!&modified&&&readonly?bufname('%'):''}" . reset
-
-  let file = "%<" . modifiedFile . unmodifiedFile . readonlyFile
-
-  let s = ''
-  let s .= currentMode . separator . file
-
-  let s .= "%=\ "
-  " let s .= format . grey . "/" . reset . encoding
-  let s .= orange . project
-  let s .= separator . "%3l:%2v"
-
-  return s
-endfunction
-
-set statusline=%!StatusLine()
-
 execute pathogen#infect()
 
 if executable('/usr/local/bin/ag')
@@ -139,6 +88,25 @@ let g:solarized_menu=0
 
 set background=dark
 colorscheme solarized
+
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'project' ],
+      \             [ 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ],
+      \              [ 'percent' ],
+      \              [ 'readonly', 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'project': 'CurrentProject'
+      \ },
+      \ }
+
+function! CurrentProject()
+  return fnamemodify(getcwd(), ":t")
+endfunction
 
 autocmd ColorScheme * execute 'source ~/.vimrc'
 
