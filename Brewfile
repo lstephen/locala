@@ -18,6 +18,7 @@ brew 'the_silver_searcher'
 brew 'tmux'
 brew 'vim'
 
+cask 'alacritty'
 cask 'dbvisualizer'
 cask 'docker'
 cask 'font-ubuntu'

@@ -15,21 +15,8 @@
     - profile
     - tmux.conf
 
-- name: iterm hide scrollbar
-  osx_defaults:
-    domain: com.googlecode.iterm2
-    key: HideScrollbar
-    value: 1
-
-- name: mkdir iterm profile dir
-  file:
-    path: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles"
-    state: directory
-    owner: "{{ ansible_env.USER }}"
-
-- name: iterm profile
+- name: alacritty config
   template:
-    src: iterm.profile.j2
-    dest: "{{ ansible_env.HOME }}/Library/Application Support/iTerm2/DynamicProfiles/locala.profile"
-
+    src: alacritty.yml.j2
+    dest: "{{ ansible_env.HOME }}/.config/alacritty/alacritty.yml"
 

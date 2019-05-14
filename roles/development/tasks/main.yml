@@ -2,7 +2,7 @@
 - name: Install construi
   pip:
     name: construi
-    version: 1.0.0rc4
+    version: 1.0.1
     state: present
 
 - name: Configure ag
