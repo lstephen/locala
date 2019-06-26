@@ -26,7 +26,6 @@ cask 'java'
 cask 'kindle'
 cask 'macvim'
 cask 'skype'
-cask 'spectacle'
 cask 'steam'
 cask 'wineskin-winery'
 
