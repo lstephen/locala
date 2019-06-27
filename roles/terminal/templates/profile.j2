@@ -1,7 +1,7 @@
 # {{ ansible_managed }}
 
 export PATH="/usr/local/bin:$PATH"
-export PATH="$(brew --prefix)/opt/python/libexec/bin:$PATH"
+export PATH="$(brew --prefix)/opt/gnu-getopt/bin:$PATH"
 
 export JAVA_HOME=$(/usr/libexec/java_home)
 
@@ -51,5 +51,10 @@ fi
 if [ -f $(brew --prefix)/bin/rbenv ]
 then
   eval "$(rbenv init -)"
+fi
+
+if [ -f $(brew --prefix)/bin/pyenv ]
+then
+  eval "$(pyenv init -)"
 fi
 
