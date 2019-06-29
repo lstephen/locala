@@ -1,6 +1,7 @@
 
 - name: Install git lfs
-  command: git lfs version && git lfs install --system
+  become: true
+  shell: git lfs version && git lfs install --system
   args:
     warn: no
   register: install_lfs_result

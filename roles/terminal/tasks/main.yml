@@ -1,4 +1,15 @@
 
+- name: Ensure folders
+  become: true
+  file:
+    path: "{{ item }}"
+    mode: "0777"
+    state: directory
+  with_items:
+    - "{{ tmux_plugin_src_dir }}"
+    - "{{ ansible_env.HOME }}/.config/alacritty"
+
+
 - name: Install tmux-better-mouse-mode
   git:
     repo: https://github.com/nhdaly/tmux-better-mouse-mode

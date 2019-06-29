@@ -23,6 +23,6 @@ brew bundle cleanup
 pip2 install ansible==2.2.1.0
 
 echo "Configuring..."
-ansible-playbook $1 $ANSIBLE_FLAGS
+ansible-playbook $1.yml $ANSIBLE_FLAGS
 
 echo "Done."
