@@ -162,19 +162,3 @@ function! Tabline()
 endfunction
 set tabline=%!Tabline()
 
-function! ChangeSession(name)
-  if !isdirectory(expand(a:name))
-    echohl ErrorMsg
-    echomsg "Not a directory"
-    echohl None
-    return
-  endif
-
-  silent execute 'Prosession' expand(a:name)
-
-  silent execute 'cd' expand(a:name)
-  echo "Switched to " . a:name
-endfunction
-
-command! -nargs=1 -complete=file ChangeSession call ChangeSession(<q-args>)
-map <C-o> :ChangeSession ~/Projects/

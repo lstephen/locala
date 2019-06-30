@@ -17,10 +17,8 @@ vim_plugins:
     version: 0532dff598abca9975d3f80128eaadadbf1d91d4
   - repo: https://github.com/adelarsq/vim-matchit.git
     version: c3dd9e433f976100726dff93557ee0167f06d63d
-  - repo: https://github.com/tpope/vim-obsession.git
-    version: ad1ef9a0db9a03463b005b488fd27cb735317394
-  - repo: https://github.com/dhruvasagar/vim-prosession.git
-    version: "v0.5.5"
+  - repo: https://github.com/sheerun/vim-polyglot
+    version: "v3.8.1"
   - repo: https://github.com/tpope/vim-sensible.git
     version: "v1.1"
   - repo: https://github.com/tpope/vim-sleuth.git
