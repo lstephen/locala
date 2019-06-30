@@ -1,0 +1,38 @@
+# {{ ansible_managed }}
+
+unbind-key C-b
+
+set-option -g history-limit 100000
+set-option -g repeat-time 0
+
+run-shell {{ tmux_plugin_src_dir }}/tmux-better-mouse-mode/scroll_copy_mode.tmux
+
+setw -g mouse on
+
+setw -g mode-keys vi
+
+#### COLOUR (Solarized dark)
+
+tmux_conf_theme_status_right_fg='brightcyan,brightblack'
+tmux_conf_theme_status_right_bg='black,yellow'
+tmux_conf_theme_status_right_attr='none,none'
+
+tmux_conf_theme_status_left_fg='brightblack'
+tmux_conf_theme_status_left_bg='yellow'
+
+tmux_conf_theme_status_bg='black'
+
+tmux_conf_theme_window_status_current_fg='brightred'
+tmux_conf_theme_window_status_current_bg='black'
+
+tmux_conf_theme_window_status_last_fg='brightcyan'
+tmux_conf_theme_window_status_last_bg='black'
+
+tmux_conf_theme_window_status_fg='brightgreen'
+tmux_conf_theme_window_status_bg='black'
+
+tmux_conf_theme_status_right='#{prefix}  | #{hostname} '
+
+tmux_conf_theme_left_separator_main=
+tmux_conf_theme_right_separator_main=
+

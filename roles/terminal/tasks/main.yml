@@ -16,6 +16,17 @@
     dest: "{{ tmux_plugin_src_dir }}/tmux-better-mouse-mode"
     version: 4c686e5a1f381e072b102df63f3f8a17426fb107
 
+- name: Install oh-my-tmux
+  git:
+    repo: https://github.com/gpakosz/.tmux.git
+    dest: "{{ tmux_plugin_src_dir }}/.tmux.git"
+
+- name: Link oh-my-tmux
+  file:
+    src: "{{ tmux_plugin_src_dir }}/.tmux.git/.tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    state: link
+
 - name: dotfiles
   template:
     src: "{{ item }}.j2"
@@ -24,7 +35,7 @@
     - bashrc
     - bash_profile
     - profile
-    - tmux.conf
+    - tmux.conf.local
 
 - name: alacritty config
   template:
