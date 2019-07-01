@@ -7,10 +7,6 @@ pathogen_version: v2.4
 pathogen_src_dir: "{{ vim_plugin_src_dir }}/vim-pathogen"
 
 vim_plugins:
-  - repo: https://github.com/mileszs/ack.vim
-    version: "1.0.9"
-  - repo: https://github.com/ctrlpvim/ctrlp.vim
-    version: "1.80"
   - repo: https://github.com/junegunn/fzf.vim
     version: master
   - repo: https://github.com/altercation/vim-colors-solarized
