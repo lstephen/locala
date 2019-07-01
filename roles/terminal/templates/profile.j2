@@ -58,3 +58,9 @@ then
   eval "$(pyenv init -)"
 fi
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
+source "/usr/local/opt/fzf/shell/completion.bash"
+source "/usr/local/opt/fzf/shell/key-bindings.bash"
+
+complete -F _fzf_path_completion -o default -o bashdefault nosetests

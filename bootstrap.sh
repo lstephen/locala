@@ -12,7 +12,7 @@ echo "Updating brew..."
 brew update
 
 echo "Verifying brew..."
-brew doctor
+brew doctor || true
 
 echo "Installing brew packages..."
 brew bundle
