@@ -36,7 +36,37 @@ function git_ps1() {
     printf $fmt $branch
   fi
 }
-export PS1='\[\033]0;\w\007\]\n\[$user_color\]\u\[$base01\]@\[$green\]\h\[$base01\]:\[$orange\]\w$(git_ps1)\[$base01\]\n\$ \[$reset\]'
+function virtual_env_ps1() {
+  virtual_env=""
+
+  if [ ! -z "$VIRTUAL_ENV" ]
+  then
+    virtual_env="($(basename $VIRTUAL_ENV)) "
+  fi
+
+  echo "$virtual_env"
+}
+function symbol_ps1() {
+  symbol="$"
+
+  if [ $? -ne 0 ]
+  then
+    symbol="\[$red\]$symbol"
+  fi
+
+  echo "$symbol"
+}
+function ps1() {
+  if [ $? -eq 0 ]
+  then
+    symbol="\$"
+  else
+    symbol="$red\$"
+  fi
+
+  PS1='\[\033]0;\w\007\]\n\[$user_color\]\u\[$base01\]@\[$green\]\h\[$base01\]:\[$orange\]\w$(git_ps1)\n\[$base01\]$(virtual_env_ps1)$symbol \[$reset\]'
+}
+export PROMPT_COMMAND=ps1
 
 export LSCOLORS=gxfxbEaEBxxEhEhBaDaCaD
 alias ls="ls -G"

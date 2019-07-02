@@ -74,10 +74,17 @@ match OverLength /\%77v.*/
 
 execute pathogen#infect()
 
+" FZF
 set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <C-p> :Files<cr>
 nnoremap <silent> <C-b> :Buffers<cr>
 nnoremap <silent> <C-f> :BLines<cr>
+
+" hardtime
+let g:hardtime_default_on=1
+nnoremap <silent> ch :HardTimeToggle<cr>
+nnoremap <silent> [h :HardTimeOn<cr>
+nnoremap <silent> ]h :HardTimeOff<cr>
 
 let g:solarized_termtrans=1
 let g:solarized_menu=0
