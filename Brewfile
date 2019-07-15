@@ -1,6 +1,7 @@
 
 tap 'caskroom/cask'
 tap 'caskroom/fonts'
+tap 'universal-ctags/universal-ctags'
 
 # This must be installed before maven
 cask 'java'
@@ -23,6 +24,8 @@ brew 'reattach-to-user-namespace'
 brew 'ruby'
 brew 'the_silver_searcher'
 brew 'tmux'
+brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
+brew 'z'
 
 cask 'alacritty'
 cask 'docker' unless Dir.exists?('/Applications/Docker.app')

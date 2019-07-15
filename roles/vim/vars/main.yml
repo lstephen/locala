@@ -13,7 +13,9 @@ vim_plugins:
     version: 0532dff598abca9975d3f80128eaadadbf1d91d4
   - repo: https://github.com/altercation/vim-colors-solarized
     version: 528a59f26d12278698bb946f8fb82a63711eec21
-  - repo : https://github.com/takac/vim-hardtime
+  - repo: https://github.com/ludovicchabant/vim-gutentags.git
+    version: master
+  - repo: https://github.com/lstephen/vim-hardtime
     version: master
   - repo: https://github.com/adelarsq/vim-matchit.git
     version: c3dd9e433f976100726dff93557ee0167f06d63d

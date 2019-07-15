@@ -29,11 +29,11 @@ export PROMPT_DIRTRIM=5
 function git_ps1() {
   fmt="$base01:$yellow%s"
   branch=`git branch 2> /dev/null | grep '*' | sed 's/* \(.*\)/(\1)/'`
-  if [ -z $branch ]
+  if [ -z "$branch" ]
   then
     :
   else
-    printf $fmt $branch
+    printf $fmt "$branch"
   fi
 }
 function virtual_env_ps1() {
@@ -88,9 +88,13 @@ then
   eval "$(pyenv init -)"
 fi
 
+if [ -f $(brew --prefix)/etc/profile.d/z.sh ]
+then
+  source $(brew --prefix)/etc/profile.d/z.sh
+fi
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 source "/usr/local/opt/fzf/shell/completion.bash"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
-complete -F _fzf_path_completion -o default -o bashdefault nosetests

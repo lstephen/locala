@@ -74,6 +74,11 @@ match OverLength /\%77v.*/
 
 execute pathogen#infect()
 
+" Gutentags
+" We'd like to use ag, but it seems to have some issues with gutentags
+" https://github.com/ludovicchabant/vim-gutentags/issues/208
+let g:gutentags_file_list_command='git ls-files --exclude-standard --cached --others'
+
 " FZF
 set rtp+=/usr/local/opt/fzf
 nnoremap <silent> <C-p> :Files<cr>
@@ -111,6 +116,7 @@ function! CurrentProject()
   return fnamemodify(getcwd(), ":t")
 endfunction
 
+autocmd CursorHold,CursorHoldI * checktime
 autocmd ColorScheme * execute 'source ~/.vimrc'
 
 hi! SignColumn guibg=#073642 ctermbg=0

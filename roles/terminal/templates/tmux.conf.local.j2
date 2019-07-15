@@ -36,6 +36,6 @@ tmux_conf_theme_status_right='#{prefix}  | #{hostname} '
 tmux_conf_theme_left_separator_main=
 tmux_conf_theme_right_separator_main=
 
-tmux_conf_theme_window_status_current_format="#I #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) |"
-tmux_conf_theme_window_status_format="#I #(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev) |"
+tmux_conf_theme_window_status_current_format="#I:#(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev)"
+tmux_conf_theme_window_status_format="#I:#(echo '#{pane_current_path}' | rev | cut -d'/' -f-2 | rev)"
 
