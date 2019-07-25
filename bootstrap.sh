@@ -20,6 +20,7 @@ brew bundle
 echo "Packages not listed in Brewfile..."
 brew bundle cleanup
 
+eval "$(pyenv init -)"
 pip2 install ansible==2.2.1.0
 
 echo "Configuring..."
