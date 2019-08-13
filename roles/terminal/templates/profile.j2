@@ -93,6 +93,11 @@ then
   source $(brew --prefix)/etc/profile.d/z.sh
 fi
 
+if [ -d $(brew --prefix)/opt/openssl/lib ]
+then
+  export LIBRARY_PATH=$LIBRARY_PATH:/usr/local/opt/openssl/lib/
+fi
+
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 source "/usr/local/opt/fzf/shell/completion.bash"
