@@ -1,5 +1,0 @@
-
-- name: restart dock
-  command: killall -HUP Dock
-  changed_when: true
-

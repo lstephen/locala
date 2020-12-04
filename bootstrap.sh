@@ -21,7 +21,7 @@ echo "Packages not listed in Brewfile..."
 brew bundle cleanup
 
 eval "$(pyenv init -)"
-pip2 install ansible==2.2.1.0
+pip3 install ansible==2.10.4
 
 echo "Configuring..."
 ansible-playbook all.yml $ANSIBLE_FLAGS

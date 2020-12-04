@@ -1,11 +1,10 @@
 
-tap 'caskroom/cask'
-tap 'caskroom/fonts'
-tap 'universal-ctags/universal-ctags'
+tap 'homebrew/cask-fonts'
 
 # This must be installed before maven
-cask 'java'
+brew 'java'
 
+brew 'act'
 brew 'bash-completion'
 brew 'coreutils'
 brew 'doxygen'
@@ -16,16 +15,16 @@ brew 'git'
 brew 'git-lfs'
 brew 'gnu-getopt'
 brew 'maven'
-brew 'mysql'
 brew 'pyenv'
-brew 'python2'
+brew 'python3'
 brew 'rbenv'
 brew 'reattach-to-user-namespace'
 brew 'ruby'
 brew 'the_silver_searcher'
 brew 'tmux'
-brew 'universal-ctags/universal-ctags/universal-ctags', args: ['HEAD']
 brew 'z'
+
+brew 'svn' # For font-ubuntu
 
 cask 'alacritty'
 cask 'docker' unless Dir.exists?('/Applications/Docker.app')

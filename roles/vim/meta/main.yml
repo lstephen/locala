@@ -1,4 +1,2 @@
 dependencies:
-  - role: dock
-    name: MacVim
   - role: git

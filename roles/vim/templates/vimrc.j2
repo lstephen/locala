@@ -1,168 +1,27 @@
 " {{ ansible_managed }}
 
-set guioptions-=m
-set guioptions-=T
-set guioptions-=e
-set guioptions-=r
-set guioptions-=L
+execute pathogen#infect()
 
-set guifont=Ubuntu\ Mono:h14
-
-set mouse=a
-
-set backupdir=~/.vim/backup//
-set directory=~/.vim/swp//
+set noshowmode
 
 set expandtab
 set softtabstop=2
 set shiftwidth=2
 
-set wmh=0
-
-map <C-J> <C-W>j<C-W>_
-map <C-k> <C-W>k<C-W>_
-
-map K i<Enter><ESC>l
-
-nnoremap <C-F> :Ag! "<C-R><C-W>"<CR>
-nnoremap <C-b> :CtrlPBuffer<CR>
-
-set guioptions+=c
-set noea
-set list
-
-set noshowmode
-set nofoldenable
-
-set ignorecase
-set smartcase
-
-set vb t_vb=
-
-function! g:ToggleColorColumn()
-  if &colorcolumn != ''
-    call g:DisableColorColumn()
-  else
-    call g:EnableColorColumn()
-  endif
-endfunction
-
-function! g:EnableColorColumn()
-  call g:EnableColorColumnSilent()
-  echo 'colorcolumn on'
-endfunction
-
-function! g:EnableColorColumnSilent()
-  execute "set colorcolumn=80," . join(range(100,255), ',')
-  hi OverLength guibg=#073642 ctermbg=0
-endfunction
-
-
-function! g:DisableColorColumn()
-  hi OverLength guibg=NONE ctermbg=NONE
-  setlocal colorcolumn&
-  echo 'colorcolumn off'
-endfunction
-
-nnoremap com :call g:ToggleColorColumn()<CR>
-nnoremap [om :call g:EnableColorColumn()<CR>
-nnoremap ]om :call g:DisableColorColumn()<CR>
-
-call g:EnableColorColumnSilent()
-
-match OverLength /\%77v.*/
-
-execute pathogen#infect()
-
-" Gutentags
-" We'd like to use ag, but it seems to have some issues with gutentags
-" https://github.com/ludovicchabant/vim-gutentags/issues/208
-let g:gutentags_file_list_command='git ls-files --exclude-standard --cached --others'
-
-" FZF
-set rtp+=/usr/local/opt/fzf
-nnoremap <silent> <C-p> :Files<cr>
-nnoremap <silent> <C-b> :Buffers<cr>
-nnoremap <silent> <C-f> :BLines<cr>
-
-" hardtime
-let g:hardtime_default_on=1
-nnoremap <silent> ch :HardTimeToggle<cr>
-nnoremap <silent> [h :HardTimeOn<cr>
-nnoremap <silent> ]h :HardTimeOff<cr>
+set directory=~/.vim/swp//
 
 let g:solarized_termtrans=1
-let g:solarized_menu=0
 
 set background=dark
 colorscheme solarized
+let g:lightline = { 'colorscheme': 'solarized' }
 
-let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'project' ],
-      \             [ 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ],
-      \              [ 'readonly', 'fileformat', 'fileencoding', 'filetype' ] ]
-      \ },
-      \ 'component_function': {
-      \   'project': 'CurrentProject'
-      \ },
-      \ }
+let g:hardtime_default_on = 1
 
-function! CurrentProject()
-  return fnamemodify(getcwd(), ":t")
-endfunction
-
-autocmd CursorHold,CursorHoldI * checktime
-autocmd ColorScheme * execute 'source ~/.vimrc'
-
-hi! SignColumn guibg=#073642 ctermbg=0
-
-hi TabLineSel guibg=#cb4b16 ctermbg=9 guifg=#073642 ctermbg=0
-hi TabLine guifg=#586e75 ctermfg=10 guibg=#073642 ctermbg=0
-hi TabLineFill guifg=#586e75 ctermfg=10 guibg=#073642 ctermbg=0
-
-hi CursorLineNr gui=NONE cterm=NONE guifg=#93a1a1 ctermfg=14 guibg=#073642 ctermbg=0
-
-hi StatusLine guifg=#073642 ctermfg=0 guibg=#b58900 ctermbg=3
-hi StatusLineNC guifg=#073642 ctermfg=0 guibg=#586e75 ctermbg=10
-
-"" Status line colors
-" Light Grey (base0)
-hi User1 guifg=#839496 ctermfg=12 guibg=#073642 ctermbg=0
-" Dark Grey (base01)
-hi User2 guifg=#586e75 ctermfg=10 guibg=#073642 ctermbg=0
-" Orange
-hi User3 guifg=#cb4b16 ctermfg=9 guibg=#073642 ctermbg=0
-" Blue
-hi User4 guifg=#268bd2 ctermfg=4 guibg=#073642 ctermbg=0
-" Red
-hi User5 guifg=#dc322f ctermfg=1 guibg=#073642 ctermbg=0
-"Green
-hi User6 guifg=#859900 ctermfg=2 guibg=#073642 ctermbg=0
-"Yello
-hi User7 guifg=#b58900 ctermfg=3 guibg=#073642 ctermbg=0
-
-function! Tabline()
-  let s = ''
-  for i in range(tabpagenr('$'))
-    let tab = i + 1
-    let winnr = tabpagewinnr(tab)
-    let buflist = tabpagebuflist(tab)
-    let bufnr = buflist[winnr - 1]
-    let bufname = bufname(bufnr)
-
-    let s .= '%' . tab . 'T'
-    let s .= (tab == tabpagenr() ? '%#TabLineSel#' : '%#TabLine#')
-    "let s .= ' ' . tab .':'
-    let s .= (bufname != '' ? ' ' . fnamemodify(bufname, ':t') . ' ' : ' [No Name] ')
-  endfor
-
-  let s .= '%#TabLineFill#'
-  return s
-endfunction
-set tabline=%!Tabline()
+set rtp+=/usr/local/src/fzf
+nnoremap <silent> <C-p> :Files<cr>
+nnoremap <silent> <C-b> :Buffers<cr>
+nnoremap <silent> <C-f> :BLines<cr>
+let g:fzf_layout = { 'down': '40%' }
+let g:fzf_preview_window = ['right:50%:hidden', 'ctrl-/']
 
