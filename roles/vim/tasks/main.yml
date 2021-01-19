@@ -49,6 +49,18 @@
   with_items: "{{ vim_plugins }}"
   notify: update helptags
 
+- name: fzf.vim folder
+  file:
+    path: "{{ vim_bundle_dir }}/fzf/plugin"
+    state: directory
+    owner: "{{ ansible_env.USER }}"
+
+- name: Install fzf.vim
+  file:
+    path: "{{  vim_bundle_dir }}/fzf/plugin/fzf.vim"
+    src: "/usr/local/opt/fzf/plugin/fzf.vim"
+    state: link
+
 - name: Install Plugins
   file:
     path: "{{ vim_bundle_dir }}/{{ item.repo | basename }}"

@@ -2,7 +2,7 @@
 tap 'homebrew/cask-fonts'
 
 # This must be installed before maven
-brew 'java'
+brew 'openjdk'
 
 brew 'act'
 brew 'bash-completion'
@@ -28,7 +28,7 @@ brew 'svn' # For font-ubuntu
 
 cask 'alacritty'
 cask 'docker' unless Dir.exists?('/Applications/Docker.app')
-cask 'font-ubuntu'
+cask 'font-ubuntu-mono'
 cask 'google-chrome' unless Dir.exists?('/Applications/Google Chrome.app')
 cask 'kindle'
 cask 'macvim'

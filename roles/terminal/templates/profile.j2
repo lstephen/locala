@@ -2,10 +2,13 @@
 
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$(brew --prefix)/opt/gnu-getopt/bin:$PATH"
+export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
 
-export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME="$(brew --prefix)/opt/openjdk"
 
 export EDITOR=vim
+
+export BASH_SILENCE_DEPRECATION_WARNING=1
 
 set -o vi
 
