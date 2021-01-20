@@ -106,3 +106,7 @@ export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 source "/usr/local/opt/fzf/shell/completion.bash"
 source "/usr/local/opt/fzf/shell/key-bindings.bash"
 
+for f in `ls $HOME/.profile.d | sort -V`
+do
+  source ".profile.d/$f"
+done
