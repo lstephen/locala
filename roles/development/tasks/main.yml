@@ -1,10 +1,4 @@
 
-- name: Install construi
-  pip:
-    name: construi
-    version: 1.2.2
-    state: present
-
 - name: Configure ag
   template:
     src: agignore.j2

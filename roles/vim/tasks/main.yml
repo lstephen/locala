@@ -58,7 +58,7 @@
 - name: Install fzf.vim
   file:
     path: "{{  vim_bundle_dir }}/fzf/plugin/fzf.vim"
-    src: "/usr/local/opt/fzf/plugin/fzf.vim"
+    src: "/opt/homebrew/opt/fzf/plugin/fzf.vim"
     state: link
 
 - name: Install Plugins

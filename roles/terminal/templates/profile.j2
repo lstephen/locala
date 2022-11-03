@@ -1,5 +1,7 @@
 # {{ ansible_managed }}
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
 export PATH="$(brew --prefix)/opt/gnu-getopt/bin:$PATH"
 export PATH="$(brew --prefix)/opt/openjdk/bin:$PATH"
@@ -103,10 +105,13 @@ fi
 
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
-source "/usr/local/opt/fzf/shell/completion.bash"
-source "/usr/local/opt/fzf/shell/key-bindings.bash"
+source "$(brew --prefix)/opt/fzf/shell/completion.bash"
+source "$(brew --prefix)/opt/fzf/shell/key-bindings.bash"
 
-for f in `ls $HOME/.profile.d | sort -V`
-do
-  source "$HOME/.profile.d/$f"
-done
+if [ -f $HOME/profile.d ]
+then
+  for f in `ls $HOME/.profile.d | sort -V`
+  do
+    source "$HOME/.profile.d/$f"
+  done
+fi
